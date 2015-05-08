@@ -1,0 +1,8 @@
+<?php
+/**
+ * Traductions EN du plugin UploadFile
+ */
+$s_plugin_uploadfile_title = 'Drag & Drop File Multiple File uploader';
+$s_plugin_uploadfile_description = 'Drag and drop file upload for bug attachments';
+
+?>
