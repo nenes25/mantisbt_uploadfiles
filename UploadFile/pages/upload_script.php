@@ -10,8 +10,7 @@
   - Le tutoriel suivant : http://tutorialzine.com/2011/09/html5-file-upload-jquery-php/
   - Le script d'upload https://github.com/mantisbt-plugins/PastePicture/blob/master/PastePicture/pages/bug_file_add.php
 
-  Version 0.1.0
-  © Hennes Hervé - 2014
+  © Hennes Hervé - 2015
   http://www.h-hennes.fr
  */
 
@@ -79,5 +78,5 @@ access_ensure_bug_level(config_get('upload_bug_file_threshold'), $f_bug_id);
 file_add($f_bug_id, $f_files, 'bug', '', '', 1);
 
 #Message de succès d'envoi
-exit_status('File was uploaded successfuly!');
+exit_status(plugin_lang_get('file_was_uploaded_successfuly'));
 ?>

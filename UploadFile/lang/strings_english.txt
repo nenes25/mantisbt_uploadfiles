@@ -5,4 +5,7 @@
 $s_plugin_uploadfile_title = 'Drag & Drop File Multiple File uploader';
 $s_plugin_uploadfile_description = 'Drag and drop file upload for bug attachments';
 
+#Upload Page
+$s_plugin_uploadfile_file_was_uploaded_successfuly = 'File send with success';
+
 ?>

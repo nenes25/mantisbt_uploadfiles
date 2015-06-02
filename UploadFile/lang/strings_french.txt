@@ -5,4 +5,7 @@
 $s_plugin_uploadfile_title = 'Envoi multiple de fichiers';
 $s_plugin_uploadfile_description = 'Upload de fichiers multiples drag and drop dans les bugs';
 
+#Upload Page
+$s_plugin_uploadfile_file_was_uploaded_successfuly = 'Fichier envoyé avec succès';
+
 ?>
