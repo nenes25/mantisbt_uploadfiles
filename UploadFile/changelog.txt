@@ -12,3 +12,5 @@
 
 2014-12-18 : V 0.1.0 : Version initiale du module
 2015-02-06 : V 0.1.1 : Optimisation traductions
+2015-06-10 : V 0.1.2 : Gestion des traductions dans la page d'upload et dans le javascript
+ 

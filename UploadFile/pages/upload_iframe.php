@@ -14,17 +14,21 @@
   © Hennes Hervé - 2014
   http://www.h-hennes.fr
  */
-# Comme ce fichier est en iframe nous ne pouvons pas utiliser les fonctions mantis ( cause une erreur  Load denied by X-Frame-Options dans Firefox )
-#@ToDO : Gérer des traductions
+
+require_once( dirname(__FILE__) . '/../../../core.php' );
+#Balise pour autoriser l'affichage de l'iframe
+header("X-Frame-Options: GOFORIT");
+
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Multi-upload mantisbt</title>
+        <title> <?php echo plugin_lang_get( 'iframe_title' ,'uploadfile'); ?></title>
 
-        <!-- Javascript Ressources-->
-        <script src="js/jquery-1.9.1.min.js"></script>
+        <!-- Javascript Ressources -->
+        <?php #@ToDO: Voir si on peut récupérer l'url de jquery par une fonction mantis ?>
+        <script src="../../jQuery/files/jquery-min.js"></script>
         <script src="js/jquery.filedrop.js"></script>
 
         <!-- Our CSS stylesheet file -->
@@ -35,13 +39,23 @@
         <![endif]-->
 
         <!-- Javascript de gestion d'upload -->
+        <script type="text/javascript">
+            //Traductions des messages d'upload
+            var BrowserNotSupportedMsg = '<?php echo plugin_lang_get('browser_not_supported_msg' ,'uploadfile'); ?>';
+            var TooManyFilesMsg = '<?php echo plugin_lang_get('too_many_files_msg' ,'uploadfile'); ?>';
+            var FileTooLargeMsg = '<?php echo plugin_lang_get('file_too_large_msg' ,'uploadfile'); ?>';
+            var FileExtensionNotAllowedMsg = '<?php echo plugin_lang_get('file_extension_not_allowed_msg' ,'uploadfile'); ?>';
+            var FileUploadSuccessMsg = '<?php echo plugin_lang_get('file_upload_success_msg' ,'uploadfile'); ?>'; 
+        </script>
         <script src="js/jquery.fileUploader_init.js"></script>
     </head>
-
+ 
     <body>
-        <input type="hidden" name="bug_id" id="bug_value" value="<?php echo intval($_GET['bug_id']); ?>" />
+        <input type="hidden" name="bug_id" id="bug_value" value="<?php echo gpc_get_int('bug_id'); ?>" />
         <div id="dropbox">
-            <span class="message">Déposer vos pièces jointes ici <br /><i>(Maximum 5 pièces jointes , 5 mo par fichier maximum)</i></span>
+            <span class="message"><?php echo plugin_lang_get( 'drop_attachments_here' , 'uploadfile'); ?><br />
+                <i>(<?php echo plugin_lang_get( 'max_files_number','uploadfile'); ?> , <?php echo plugin_lang_get( 'max_files_size','uploadfile'); ?>)</i>
+            </span>
         </div>
     </body>
 </html>

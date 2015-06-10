@@ -23,8 +23,11 @@ class UploadFilePlugin extends MantisPlugin {
     function register() {
         $this->name = lang_get( 'plugin_uploadfile_title' );
         $this->description = lang_get( 'plugin_uploadfile_description' );
-        $this->version = '0.1.1';
-        $this->requires = array('MantisCore' => '1.2.0',);
+        $this->version = '0.1.2';
+        $this->requires = array(
+            'MantisCore' => '1.2.0',
+            'jQuery' => '1.11'
+        );
         $this->author = 'Hennes Hervé';
         $this->url = 'http://www.h-hennes.fr';
     
@@ -42,16 +45,13 @@ class UploadFilePlugin extends MantisPlugin {
      * Placement dans le DOM via jquery
      */
     function uploadFileBugDetails() {
-
-        #Insertion librairie jquery
-        echo '<script type="text/javascript" src="plugins/UploadFile/pages/js/jquery-1.9.1.min.js"></script>';
-
+                
         #Déplacement du code d'upload dans le DOM
         echo '<script type="text/javascript">
-			$(function(){
-                            $("#upload_form_open").after($("#upload_form_multi").html());
-			});
-			</script>';
+                jQuery(document).ready(function($){
+                    $("#upload_form_open").after($("#upload_form_multi").html());
+                });
+              </script>';
 
         #Code qui va servir à l'upload ( Iframe avec une page html5 )
         echo '<div id="upload_form_multi" style="display:none">

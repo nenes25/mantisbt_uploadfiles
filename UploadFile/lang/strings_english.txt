@@ -8,4 +8,16 @@ $s_plugin_uploadfile_description = 'Drag and drop file upload for bug attachment
 #Upload Page
 $s_plugin_uploadfile_file_was_uploaded_successfuly = 'File send with success';
 
+#Iframe Page
+$s_plugin_uploadfile_browser_not_supported_msg = 'Your browser is not compatible with hmtl5';
+$s_plugin_uploadfile_too_many_files_msg = 'Too much files ! Max 5 files';
+$s_plugin_uploadfile_file_too_large_msg = ' too large ! Maximum 5mb.';
+$s_plugin_uploadfile_file_extension_not_allowed_msg = ' file extension not allowed';
+$s_plugin_uploadfile_file_upload_success_msg = 'Files Upload completed. The page will be refresh';
+
+$s_plugin_uploadfile_iframe_title = 'Ajax Multiple Upload';
+$s_plugin_uploadfile_drop_attachments_here = 'Drop Attachments here';
+$s_plugin_uploadfile_max_files_number = 'Max 5 attachments';
+$s_plugin_uploadfile_max_files_size = '5 mo per attachment maximum';
+
 ?>

@@ -36,16 +36,16 @@ $(function () {
 
             switch (err) {
                 case 'BrowserNotSupported':
-                    showMessage('Votre navigateur ne supporte pas l\'upload html5');
+                    showMessage(BrowserNotSupportedMsg);
                     break;
                 case 'TooManyFiles':
-                    alert('Trop de fichiers ! Maximum 5 fichiers');
+                    alert(TooManyFilesMsg);
                     break;
                 case 'FileTooLarge':
-                    alert(file.name + ' trop important ! Maximum 5mb.');
+                    alert(file.name + FileTooLargeMsg);
                     break;
                 case 'FileExtensionNotAllowed':
-                    alert(file.name + ' format de fichier non autorisé')
+                    alert(file.name + FileExtensionNotAllowedMsg)
                 default:
                     break;
             }
@@ -62,7 +62,7 @@ $(function () {
         },
         //Après l'upload de toutes les images on raffraichis la page pour que les pièces jointes soient bien affichées
         afterAll: function () {
-            alert("Upload des fichier terminés \n La page va être rechargée pour prendre en compte les nouvelles pièces jointes");
+            alert(FileUploadSuccessMsg);
             parent.location.href = parent.location.href;
         }
 
