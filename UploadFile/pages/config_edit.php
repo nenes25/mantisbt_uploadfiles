@@ -1,11 +1,16 @@
 <?php
-/*
-  Plugin EmailFile pour Mantis BugTracker :
+/**
+  Plugin FileUploader pour Mantis BugTracker :
 
-  - Rajouts de pièces jointes à un bug via email
+  - Envoi de fichiers multiples dans les bugs
 
-  Version 0.1.0
-  © Hennes Hervé - 2014
+  - Pour ce projet j'ai utilisé les librairies suivantes :
+
+  - Jquery-FileDrop : https://github.com/weixiyen/jquery-filedrop
+  - Le tutoriel suivant : http://tutorialzine.com/2011/09/html5-file-upload-jquery-php/
+  - Le script d'upload https://github.com/mantisbt-plugins/PastePicture/blob/master/PastePicture/pages/bug_file_add.php
+
+  © Hennes Hervé - 2015
   http://www.h-hennes.fr
  */
 

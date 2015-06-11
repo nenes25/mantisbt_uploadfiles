@@ -10,8 +10,7 @@
   - Le tutoriel suivant : http://tutorialzine.com/2011/09/html5-file-upload-jquery-php/
   - Le script d'upload https://github.com/mantisbt-plugins/PastePicture/blob/master/PastePicture/pages/bug_file_add.php
 
-  Version 0.1.0
-  © Hennes Hervé - 2014
+  © Hennes Hervé - 2015
   http://www.h-hennes.fr
  */
 
