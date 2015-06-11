@@ -10,13 +10,21 @@ $s_plugin_uploadfile_file_was_uploaded_successfuly = 'Fichier envoyé avec succ�
 
 #Iframe Page
 $s_plugin_uploadfile_browser_not_supported_msg = 'Votre navigateur ne supporte pas l\'upload html5';
-$s_plugin_uploadfile_too_many_files_msg = 'Trop de fichiers ! Maximum 5 fichiers';
-$s_plugin_uploadfile_file_too_large_msg = ' trop important ! Maximum 5mb.';
+$s_plugin_uploadfile_too_many_files_msg = 'Trop de fichiers ! Maximum %d fichiers';
+$s_plugin_uploadfile_file_too_large_msg = ' trop important ! Maximum %d mb.';
 $s_plugin_uploadfile_file_extension_not_allowed_msg = ' format de fichier non autorisé';
 $s_plugin_uploadfile_file_upload_success_msg = 'Upload des fichier terminés La page va être rechargée pour prendre en compte les nouvelles pièces jointes';
 
 $s_plugin_uploadfile_iframe_title = 'Upload Mutiple Ajax';
 $s_plugin_uploadfile_drop_attachments_here = 'Déposez vos pièces jointes ici';
-$s_plugin_uploadfile_max_files_number = 'Maximum 5 pièces jointes';
-$s_plugin_uploadfile_max_files_size = '5 mo par fichier maximum';
+$s_plugin_uploadfile_max_files_number = 'Maximum %d pièces jointes';
+$s_plugin_uploadfile_max_files_size = '%d mo par fichier maximum';
+
+#Configuration Page
+$s_plugin_UploadFile_title = 'Configurer le plugin d'envoi de fichier';
+$s_plugin_UploadFile_max_files = 'Nombre de fichiers maximum';
+$s_plugin_UploadFile_max_file_size = 'Taille maximum d'un fichier (Mb)';
+$s_plugin_UploadFile_allowed_extensions = 'Extensions de fichiers autorisées';
+$s_plugin_UploadFile_allowed_extensions_description = 'Saisir les extensions autorisées séparées par des virgueles ex: ( .jpg,.png,.doc )';
+$s_plugin_UploadFile_config_action_update = 'Envoyer';
 ?>

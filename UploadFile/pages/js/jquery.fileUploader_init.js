@@ -25,8 +25,8 @@ $(function () {
     dropbox.filedrop({
         // The name of the $_FILES entry:
         paramname: 'pic',
-        maxfiles: 5,
-        maxfilesize: 5, // in mb
+        maxfiles: FilesMaxNumber,
+        maxfilesize: MaxFileSize, // in mb
         url: 'upload_script.php?bug_id=' + bug_id,
         //Fin de l'upload
         uploadFinished: function (i, file, response) {
@@ -50,7 +50,7 @@ $(function () {
                     break;
             }
         },
-        allowedfileextensions: ['.jpg', '.jpeg', '.png', '.gif', '.tpl', '.csv', '.doc', '.docx', '.xls', '.xlsx', '.txt', '.zip', '.ppt', '.pptx','.pdf','.psd','.html'],
+        allowedfileextensions: FilesAllowedExtensions,
         
         //Au début de l'upload création de la miniature
         uploadStarted: function (i, file, len) {

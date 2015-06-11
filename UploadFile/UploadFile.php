@@ -23,7 +23,8 @@ class UploadFilePlugin extends MantisPlugin {
     function register() {
         $this->name = lang_get( 'plugin_uploadfile_title' );
         $this->description = lang_get( 'plugin_uploadfile_description' );
-        $this->version = '0.1.2';
+        $this->page = 'config.php';
+        $this->version = '0.2.0';
         $this->requires = array(
             'MantisCore' => '1.2.0',
             'jQuery' => '1.11'
@@ -38,6 +39,19 @@ class UploadFilePlugin extends MantisPlugin {
      */
     function init() {
         plugin_event_hook('EVENT_VIEW_BUG_DETAILS', 'uploadFileBugDetails');
+    }
+    
+    /**
+     * Configuration par défaut du module
+     * @return array
+     */
+    function config() {
+        
+        return array(
+            'max_files' => 5,
+            'max_file_size' => 5,
+            'allowed_extensions' => ".jpg,.jpeg,.png,.gif,.csv,.doc,.docx,.xls,.xlsx,.txt,.zip,.ppt,.pptx,.pdf,.psd,.html",
+            );
     }
 
     /**
@@ -60,7 +74,15 @@ class UploadFilePlugin extends MantisPlugin {
                 </div>
 	      </div>';
     }
-
+    
+    /**
+     * Dans la page iframe la fonction plugin_config_get ne fonctionne pas
+     * Retour statique de cette variable pour l'iframe
+     * @param string Configuration option name
+     */
+    public static function plugin_config_get_iframe($p_option){
+        return config_get( 'plugin_UploadFile_'.$p_option, null, null, null );
+    }
 }
 
 ?>

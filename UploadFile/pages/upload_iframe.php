@@ -19,6 +19,11 @@ require_once( dirname(__FILE__) . '/../../../core.php' );
 #Balise pour autoriser l'affichage de l'iframe
 header("X-Frame-Options: GOFORIT");
 
+#Récupération spécifique des variables de configuration en raison de l'utilisation de l'iframe
+$t_max_files = UploadFilePlugin::plugin_config_get_iframe('max_files');
+$t_max_file_size = UploadFilePlugin::plugin_config_get_iframe('max_file_size');
+$t_extensions_allowed = UploadFilePlugin::plugin_config_get_iframe('allowed_extensions');
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,10 +47,15 @@ header("X-Frame-Options: GOFORIT");
         <script type="text/javascript">
             //Traductions des messages d'upload
             var BrowserNotSupportedMsg = '<?php echo plugin_lang_get('browser_not_supported_msg' ,'uploadfile'); ?>';
-            var TooManyFilesMsg = '<?php echo plugin_lang_get('too_many_files_msg' ,'uploadfile'); ?>';
-            var FileTooLargeMsg = '<?php echo plugin_lang_get('file_too_large_msg' ,'uploadfile'); ?>';
+            var TooManyFilesMsg = '<?php echo sprintf( plugin_lang_get('too_many_files_msg' ,'uploadfile') , $t_max_files ) ; ?>';
+            var FileTooLargeMsg = '<?php echo sprintf( plugin_lang_get('file_too_large_msg' ,'uploadfile') , $t_max_file_size ); ?>';
             var FileExtensionNotAllowedMsg = '<?php echo plugin_lang_get('file_extension_not_allowed_msg' ,'uploadfile'); ?>';
             var FileUploadSuccessMsg = '<?php echo plugin_lang_get('file_upload_success_msg' ,'uploadfile'); ?>'; 
+            
+            //Variables de configuration des upload
+            var FilesMaxNumber = <?php echo $t_max_files ?>;
+            var MaxFileSize = <?php echo $t_max_file_size; ?>;
+            var FilesAllowedExtensions = <?php echo json_encode(explode(',',$t_extensions_allowed));?>;
         </script>
         <script src="js/jquery.fileUploader_init.js"></script>
     </head>
@@ -54,7 +64,7 @@ header("X-Frame-Options: GOFORIT");
         <input type="hidden" name="bug_id" id="bug_value" value="<?php echo gpc_get_int('bug_id'); ?>" />
         <div id="dropbox">
             <span class="message"><?php echo plugin_lang_get( 'drop_attachments_here' , 'uploadfile'); ?><br />
-                <i>(<?php echo plugin_lang_get( 'max_files_number','uploadfile'); ?> , <?php echo plugin_lang_get( 'max_files_size','uploadfile'); ?>)</i>
+                <i>(<?php echo sprintf( plugin_lang_get( 'max_files_number','uploadfile'), $t_max_files ); ?> , <?php echo sprintf( plugin_lang_get( 'max_files_size','uploadfile') , $t_max_file_size ); ?>)</i>
             </span>
         </div>
     </body>
