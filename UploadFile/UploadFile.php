@@ -24,7 +24,7 @@ class UploadFilePlugin extends MantisPlugin {
         $this->name = lang_get( 'plugin_uploadfile_title' );
         $this->description = lang_get( 'plugin_uploadfile_description' );
         $this->page = 'config.php';
-        $this->version = '0.2.0';
+        $this->version = '0.2.2';
         $this->requires = array(
             'MantisCore' => '1.2.0',
             'jQuery' => '1.11'

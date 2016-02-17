@@ -14,4 +14,5 @@
 2015-02-06 : V 0.1.1 : Optimisation traductions
 2015-06-10 : V 0.1.2 : Gestion des traductions dans la page d'upload et dans le javascript
 2015-06-11 : V 0.2.0 : Mise en place d'une page de configuration qui permets de définir : Nombre de fichiers maximum à envoyer, Taille Maximum des fichiers, Extensions de fichiers autorisés
-2015-06-11 : V 0.2.1 : Correctifs Trads 
+2015-06-11 : V 0.2.1 : Correctifs Trads
+2016-02-16 : V 0.2.2 : Correctifs Traductions js 

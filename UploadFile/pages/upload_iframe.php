@@ -23,6 +23,12 @@ $t_max_files = UploadFilePlugin::plugin_config_get_iframe('max_files');
 $t_max_file_size = UploadFilePlugin::plugin_config_get_iframe('max_file_size');
 $t_extensions_allowed = UploadFilePlugin::plugin_config_get_iframe('allowed_extensions');
 
+#Nettoyage des traductions qui comportent un ' qui faut sauter le javascript
+function cleanJsTranslation($input) {
+	$input = str_replace("'","\'",$input);
+	return $input;
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,11 +51,11 @@ $t_extensions_allowed = UploadFilePlugin::plugin_config_get_iframe('allowed_exte
         <!-- Javascript de gestion d'upload -->
         <script type="text/javascript">
             //Traductions des messages d'upload
-            var BrowserNotSupportedMsg = '<?php echo plugin_lang_get('browser_not_supported_msg' ,'uploadfile'); ?>';
-            var TooManyFilesMsg = '<?php echo sprintf( plugin_lang_get('too_many_files_msg' ,'uploadfile') , $t_max_files ) ; ?>';
-            var FileTooLargeMsg = '<?php echo sprintf( plugin_lang_get('file_too_large_msg' ,'uploadfile') , $t_max_file_size ); ?>';
-            var FileExtensionNotAllowedMsg = '<?php echo plugin_lang_get('file_extension_not_allowed_msg' ,'uploadfile'); ?>';
-            var FileUploadSuccessMsg = '<?php echo plugin_lang_get('file_upload_success_msg' ,'uploadfile'); ?>'; 
+            var BrowserNotSupportedMsg = '<?php echo cleanJsTranslation(plugin_lang_get('browser_not_supported_msg' ,'uploadfile')); ?>';
+            var TooManyFilesMsg = '<?php echo cleanJsTranslation(sprintf( plugin_lang_get('too_many_files_msg' ,'uploadfile') , $t_max_files )) ; ?>';
+            var FileTooLargeMsg = '<?php echo cleanJsTranslation(sprintf( plugin_lang_get('file_too_large_msg' ,'uploadfile') , $t_max_file_size )); ?>';
+            var FileExtensionNotAllowedMsg = '<?php echo cleanJsTranslation(plugin_lang_get('file_extension_not_allowed_msg' ,'uploadfile')); ?>';
+            var FileUploadSuccessMsg = '<?php echo cleanJsTranslation(plugin_lang_get('file_upload_success_msg' ,'uploadfile')); ?>'; 
             
             //Variables de configuration des upload
             var FilesMaxNumber = <?php echo $t_max_files ?>;
