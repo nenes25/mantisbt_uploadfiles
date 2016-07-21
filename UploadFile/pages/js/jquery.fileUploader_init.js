@@ -1,34 +1,43 @@
 /*
- Plugin FileUploader pour Mantis BugTracker :
- 
- - Envoi de fichiers multiples dans les bugs en drag & drop
- 
- Pour ce projet j'ai utilisé les librairies suivantes :
- - Jquery-FileDrop : https://github.com/weixiyen/jquery-filedrop
- 
- - Le tutoriel suivant : http://tutorialzine.com/2011/09/html5-file-upload-jquery-php/
- - Le script d'upload https://github.com/mantisbt-plugins/PastePicture/blob/master/PastePicture/pages/bug_file_add.php
- 
- Version 0.1.0
- © Hennes Hervé - 2014
- http://www.h-hennes.fr
+ # MantisBT - A PHP based bugtracking system
+# MantisBT is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# MantisBT is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with MantisBT.  If not, see <http://www.gnu.org/licenses/>.
+
+#
+#  FileUploader Plugin :  - Allow you to send mutiple files in bug with drag & drop
+#  This plugin use the folowing librairies :
+#  - Jquery-FileDrop : https://github.com/weixiyen/jquery-filedrop
+#  - Le tutoriel suivant : http://tutorialzine.com/2011/09/html5-file-upload-jquery-php/
+#  - Le script d'upload https://github.com/mantisbt-plugins/PastePicture/blob/master/PastePicture/pages/bug_file_add.php
+#
+#  © Hennes Hervé <contact@h-hennes.fr>
+#    2015-2016
+#  http://www.h-hennes.fr/blog/
  */
 $(function () {
 
     var dropbox = $('#dropbox'),
             message = $('.message', dropbox);
 
-    //Récupération de l'identifiant du bug
+    //Get bug identifier
     var bug_id = $('#bug_value').val();
 
-    //@ToDO : Permettre de configurer ces variables en BO
     dropbox.filedrop({
-        // The name of the $_FILES entry:
         paramname: 'pic',
         maxfiles: FilesMaxNumber,
         maxfilesize: MaxFileSize, // in mb
         url: 'upload_script.php?bug_id=' + bug_id,
-        //Fin de l'upload
+        //End of upload
         uploadFinished: function (i, file, response) {
             $.data(file).addClass('done');
         },
@@ -52,11 +61,11 @@ $(function () {
         },
         allowedfileextensions: FilesAllowedExtensions,
         
-        //Au début de l'upload création de la miniature
+        //thumb creation
         uploadStarted: function (i, file, len) {
             createImage(file);
         },
-        //Mise à jour de la barre de progression
+        //Progress Bar update
         progressUpdated: function (i, file, progress) {
             $.data(file).find('.progress').width(progress);
         },
@@ -68,7 +77,7 @@ $(function () {
 
     });
 
-    //Modèle d'affichage des images
+    //Image display model
     var template = '<div class="preview">' +
             '<span class="imageHolder">' +
             '<img />' +
@@ -80,7 +89,10 @@ $(function () {
             '</div>';
 
 
-    //
+	/**
+	 * Create Image thumb
+	 * @var string file : uploaded file
+	 */
     function createImage(file) {
         var preview = $(template),
                 image = $('img', preview);
@@ -92,7 +104,7 @@ $(function () {
 
         reader.onload = function (e) {
 
-            //Si ce n'est pas une image on affiche une icone standard
+            //If the file is not an image, display standard icon
             if (!file.type.match(/^image\//)) {
                 image.attr('src', 'default-file.jpg');
             }

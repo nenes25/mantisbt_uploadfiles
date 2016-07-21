@@ -1,25 +1,35 @@
 <?php
-/*
-  Plugin FileUploader pour Mantis BugTracker :
+# MantisBT - A PHP based bugtracking system
+# MantisBT is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# MantisBT is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with MantisBT.  If not, see <http://www.gnu.org/licenses/>.
 
-  - Envoi de fichiers multiples dans les bugs en drag & drop
-
-  Pour ce projet j'ai utilisé les librairies suivantes :
-
-  - Jquery-FileDrop : https://github.com/weixiyen/jquery-filedrop
-  - Le tutoriel suivant : http://tutorialzine.com/2011/09/html5-file-upload-jquery-php/
-  - Le script d'upload https://github.com/mantisbt-plugins/PastePicture/blob/master/PastePicture/pages/bug_file_add.php
-
-  © Hennes Hervé - 2015
-  http://www.h-hennes.fr
- */
+#
+#  FileUploader Plugin :  - Allow you to send mutiple files in bug with drag & drop
+#  This plugin use the folowing librairies :
+#  - Jquery-FileDrop : https://github.com/weixiyen/jquery-filedrop
+#  - Le tutoriel suivant : http://tutorialzine.com/2011/09/html5-file-upload-jquery-php/
+#  - Le script d'upload https://github.com/mantisbt-plugins/PastePicture/blob/master/PastePicture/pages/bug_file_add.php
+#
+#  © Hennes Hervé <contact@h-hennes.fr>
+#    2015-2016
+#  http://www.h-hennes.fr/blog/
 
 require_once( dirname(__FILE__) . '/../../../core.php' );
 require_once( dirname(__FILE__) . '/../../../core/file_api.php' );
 
 /**
- * Renvoi du statut de l'erreur d'upload
- * @param type $str
+ * Get upload status error
+ * @param string $str
  */
 function exit_status($str) {
     echo json_encode(array('status' => $str));
@@ -27,11 +37,10 @@ function exit_status($str) {
 }
 
 /**
- * Récupération des données du fichier envoyé
- * c
- * @param type $p_var_name
- * @param type $p_default
- * @return type
+ * Get uploaded file data
+ * @param string $p_var_name : file_name
+ * @param boolean $p_default
+ * @return array || null
  */
 function gpc_get_fileCustom($p_var_name, $p_default = null) {
     if (isset($_FILES[$p_var_name])) {
@@ -77,6 +86,6 @@ if (!file_allow_bug_upload($f_bug_id)) {
 access_ensure_bug_level(config_get('upload_bug_file_threshold'), $f_bug_id);
 file_add($f_bug_id, $f_files, 'bug', '', '', 1);
 
-#Message de succès d'envoi
+#Success message
 exit_status(plugin_lang_get('file_was_uploaded_successfuly'));
 ?>
