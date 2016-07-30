@@ -25,18 +25,33 @@
 #  http://www.h-hennes.fr/blog/
  */
 $(function () {
-
+    
+    //déplacement du bloc
+    $("#upload_form_multi").insertAfter('#upload_form_open');
+    
+    //Récupération des traductions:
+    FilesMaxNumber = $('#FilesMaxNumber').val();
+    MaxFileSize = $('#MaxFileSize').val();
+    BrowserNotSupportedMsg = $('#BrowserNotSupportedMsg').val();
+    TooManyFilesMsg = $('#TooManyFilesMsg').val();
+    FileTooLargeMsg = $('#FileTooLargeMsg').val();
+    FileExtensionNotAllowedMsg = $('#FileExtensionNotAllowedMsg').val();
+    FilesAllowedExtensions = $('#FilesAllowedExtensions').val();
+    FileUploadSuccessMsg = $('#FileUploadSuccessMsg').val();
+    
     var dropbox = $('#dropbox'),
-            message = $('.message', dropbox);
+        message = $('.message', dropbox);
 
     //Get bug identifier
     var bug_id = $('#bug_value').val();
+    
+    console.log(dropbox);
 
     dropbox.filedrop({
         paramname: 'pic',
         maxfiles: FilesMaxNumber,
         maxfilesize: MaxFileSize, // in mb
-        url: 'upload_script.php?bug_id=' + bug_id,
+        url: 'plugin.php?page=UploadFile/upload_script.php&bug_id=' + bug_id,
         //End of upload
         uploadFinished: function (i, file, response) {
             $.data(file).addClass('done');

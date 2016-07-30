@@ -55,7 +55,7 @@
     left:0;
     height:100%;
     width:100%;
-    background: url('ok.png') no-repeat center center rgba(255,255,255,0.5);
+    background: url('plugins/UploadFile/files/css/ok.png') no-repeat center center rgba(255,255,255,0.5);
     display: none;
 }
 
@@ -94,3 +94,8 @@
 #dropbox .preview.done .progress{
     width:100% !important;
 }
+
+#upload_form_multi {
+    /*display: none;*/
+}
+#multiple_upload_area {margin-top: 20px;}

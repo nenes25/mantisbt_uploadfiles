@@ -9,3 +9,7 @@ This plugin add a drag & drop zone on the bug view page :
 This area allow you to upload quickly multiples files.
 
 You can configure allowed file extension in the administration
+
+Plugin for mantis bug tracker 1.3.x
+
+A version for mantis bug tracker 1.2.x is avalaible on the branch 1.2.x

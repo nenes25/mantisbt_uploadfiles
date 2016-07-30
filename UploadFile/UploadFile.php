@@ -35,10 +35,9 @@ class UploadFilePlugin extends MantisPlugin {
         $this->name = lang_get( 'plugin_uploadfile_title' );
         $this->description = lang_get( 'plugin_uploadfile_description' );
         $this->page = 'config.php';
-        $this->version = '0.2.3';
+        $this->version = '0.3.0';
         $this->requires = array(
-            'MantisCore' => '1.2.0',
-            'jQuery' => '1.11'
+            'MantisCore' => '1.3.0',
         );
         $this->author = 'Hennes Hervé';
         $this->url = 'http://www.h-hennes.fr/blog/';
@@ -66,24 +65,44 @@ class UploadFilePlugin extends MantisPlugin {
     }
 
     /**
-	 * Code display in bug page
+     * Code display in bug page
      * Done in the DOM with Jquery
      */
     function uploadFileBugDetails() {
+        
+        #Load css and Js
+        echo '<link rel="stylesheet" type="text/css" href="'.plugin_file('css/upload.css').'" />
+              <script type="text/javascript" src="'.plugin_file('js/jquery.filedrop.js').'"></script>
+              <script type="text/javascript" src="'.plugin_file('js/jquery.fileUploader_init.js').'"></script>    
+              ';
                 
-        #Move upload code in DOM
-        echo '<script type="text/javascript">
-                jQuery(document).ready(function($){
-                    $("#upload_form_open").after($("#upload_form_multi").html());
-                });
-              </script>';
-
-        #Upload Code ( Iframe with html5 page )
-        echo '<div id="upload_form_multi" style="display:none">
-                <div id="multiple_upload_area" style="margin-top:20px;">
-                  <iframe src="plugins/UploadFile/pages/upload_iframe.php?bug_id=' . gpc_get_int('id', -1) . '" id="uploadPage" width="100%" scrolling="no" height="200px;" frameborder="0"></iframe>
+       #Translation vars
+       echo '<input type="hidden" name="BrowserNotSupportedMsg" id="BrowserNotSupportedMsg" value="'.$this->cleanJsTranslation(plugin_lang_get('browser_not_supported_msg','uploadfile')).'" />';
+       echo '<input type="hidden" id="TooManyFilesMsg" value="'.$this->cleanJsTranslation(plugin_lang_get('too_many_files_msg','uploadfile')).'" />';
+       echo '<input type="hidden" id="FileTooLargeMsg" value="'.$this->cleanJsTranslation(plugin_lang_get('file_too_large_msg','uploadfile')).'" />';
+       echo '<input type="hidden" id="FileExtensionNotAllowedMsg" value="'.$this->cleanJsTranslation(plugin_lang_get('file_extension_not_allowed_msg','uploadfile')).'" />';
+       echo '<input type="hidden" id="FileUploadSuccessMsg" value="'.$this->cleanJsTranslation(plugin_lang_get('file_upload_success_msg','uploadfile')).'" />';
+       echo '<input type="hidden" id="FilesMaxNumber" value="'.plugin_config_get('max_files').'" />';
+       echo '<input type="hidden" id="MaxFileSize" value="'.plugin_config_get('max_file_size').'" />';
+       echo '<input type="hidden" id="FileUploadSuccessMsg" value="'.json_encode(explode(',',plugin_config_get('allowed_extensions'))).'" />';
+       
+        #Upload Code
+        echo '<div id="upload_form_multi">
+                <div id="multiple_upload_area">
+                <input type="hidden" name="bug_id" id="bug_value" value="'.gpc_get_int('id').'" />
+                <div id="dropbox">
+                    <span class="message">'.plugin_lang_get( 'drop_attachments_here' , 'uploadfile').'<br />
+                        <i>('.sprintf( plugin_lang_get( 'max_files_number','uploadfile'), plugin_config_get('max_files') ).' , '.sprintf( plugin_lang_get( 'max_files_size','uploadfile') , plugin_config_get('max_file_size') ).')</i>
+                    </span>
+                </div>
                 </div>
 	      </div>';
+    }
+    
+    #Clean js translations
+    public function cleanJsTranslation($input) {
+            $input = str_replace("'","\'",$input);
+            return $input;
     }
     
     /**

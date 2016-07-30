@@ -30,3 +30,4 @@
 2015-06-11 : V 0.2.1 : Correctifs Trads
 2016-02-16 : V 0.2.2 : Correctifs Traductions js 
 2016-07-22 : V 0.2.3 : Changements header + traduction des commentaires en anglais // Header changes + translation of all code comments in english.
+2016-07-30 : V 0.3.0 : Maj pour mantis 1.3 // Upgrade for mantis 1.3
