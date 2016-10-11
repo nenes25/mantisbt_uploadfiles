@@ -30,9 +30,25 @@ access_ensure_global_level(config_get('manage_plugin_threshold'));
 html_page_top(plugin_lang_get('title'));
 
 print_manage_menu();
+
+#Display human readable size
+function human_filesize($size, $precision = 2) {
+    $units = array('B','kB','MB','GB','TB');
+    $step = 1024;
+    $i = 0;
+    while (($size / $step) > 0.9) {
+        $size = $size / $step;
+        $i++;
+    }
+    return round($size, $precision).$units[$i];
+}
 ?>
 
 <h2><?php echo plugin_lang_get('title');?></h2>
+
+<div class="row-category2">
+ <?php echo sprintf(plugin_lang_get('warning_mantis_config'),human_filesize($g_max_file_size)); ?>
+</div>
 
 <form action="<?php echo plugin_page('config_edit') ?>" method="post">
     <table>

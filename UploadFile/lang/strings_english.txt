@@ -27,5 +27,5 @@ $s_plugin_UploadFile_max_file_size = 'File max file size (Mb)';
 $s_plugin_UploadFile_allowed_extensions = 'Allowed Files Extensions';
 $s_plugin_UploadFile_allowed_extensions_description = 'Enter allowed extension coma separated ie ( .jpg,.png,.doc )';
 $s_plugin_UploadFile_config_action_update = 'Update';
-
+$s_plugin_UploadFile_warning_mantis_config = 'Your mantis configuration $g_max_file_size is set to <strong> %s </strong> , please increase it if needed to make to plugin work correctly';
 ?>
